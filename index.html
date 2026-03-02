@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>ROMELEX · Warehousing · Transport · Logistics</title>
+
+  <!-- Font Awesome 6 (free) -->
+   <link rel="icon" type="image/x-icon" href="si.avif">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Font: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      background:#f5f8fc;
+      font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#132234;
+      line-height:1.55;
+    }
+
+    :root{
+      --navy:#0a2647;
+      --navy2:#123a62;
+      --gold:#c9a15b;
+      --coral:#f36f4a;
+      --sand:#f8f2ea;
+      --white:#ffffff;
+      --border:#e2eaf2;
+      --muted:#4b6f8d;
+      --shadow:0 20px 40px -12px rgba(10,38,71,.15);
+      --radius:40px;
+      --radius2:26px;
+      --btn:60px;
+      --max:1280px;
+    }
+
+    .container{max-width:var(--max);margin:0 auto;padding:0 2rem;width:100%}
+
+    /* Top bar */
+    .topbar{
+      background:var(--navy);
+      color:rgba(255,255,255,.88);
+      padding:.85rem 0;
+      border-bottom:3px solid var(--gold);
+    }
+    .topbar .container{
+      display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;
+      align-items:center;justify-content:space-between;
+      font-size:.95rem;
+    }
+    .topbar-left,.topbar-right{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center}
+    .topbar i{color:var(--coral);margin-right:8px}
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:.45rem .8rem;border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      color:rgba(255,255,255,.90);
+      white-space:nowrap;
+    }
+    .chip i{color:var(--gold);margin-right:0}
+
+    /* Navbar */
+    .navbar{
+      position:sticky;top:0;z-index:60;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(226,234,242,.7);
+      box-shadow:0 4px 18px rgba(0,0,0,.03);
+    }
+    .navwrap{
+      max-width:1400px;margin:0 auto;padding:.9rem 2rem;
+      display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    }
+
+    .brand{display:flex;align-items:center;gap:12px;min-width:240px}
+    .brand-logo{
+      width:44px;height:44px;border-radius:14px;
+      background:linear-gradient(135deg, rgba(10,38,71,.10), rgba(243,111,74,.10));
+      border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;
+    }
+    /* Put your logo file as: romelex-logo.png (same folder) */
+    .brand-logo img{width:100%;height:100%;object-fit:contain;display:block}
+    .brand-name{
+      font-weight:900;letter-spacing:-.02em;color:var(--navy);
+      font-size:1.35rem;line-height:1.05;
+    }
+    .brand-sub{color:var(--muted);font-size:.95rem;font-weight:600}
+
+    .navlinks{display:flex;gap:2.1rem;font-weight:700;align-items:center}
+    .navlinks a{
+      color:var(--navy);
+      text-decoration:none;
+      border-bottom:2px solid transparent;
+      padding-bottom:4px;
+      transition:.2s;
+      white-space:nowrap;
+    }
+    .navlinks a:hover{border-bottom-color:var(--coral)}
+    .navcta{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.85rem 1.4rem;border-radius:999px;
+      background:var(--coral);color:#fff;text-decoration:none;
+      font-weight:800;box-shadow:0 12px 22px rgba(243,111,74,.25);
+      transition:.2s;
+    }
+    .navcta:hover{background:#d94f2e;transform:translateY(-1px)}
+
+    .menutoggle{
+      display:none;
+      font-size:1.6rem;color:var(--navy);
+      cursor:pointer;
+      padding:.45rem .7rem;border-radius:14px;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+    .menutoggle:focus{outline:2px solid rgba(243,111,74,.35);outline-offset:2px}
+
+    .mobilenav{
+      display:none;
+      padding:1rem 2rem 1.3rem;
+      border-top:1px solid var(--border);
+      background:#fff;
+      flex-direction:column;
+      gap:1rem;
+      box-shadow:0 10px 20px rgba(0,0,0,.05);
+    }
+    .mobilenav a{
+      text-decoration:none;color:var(--navy);
+      font-weight:800;font-size:1.15rem;
+      padding:.55rem 0;
+      border-bottom:1px solid var(--border);
+    }
+    .mobilenav a:last-child{border-bottom:none}
+
+    /* Hero */
+    .hero{
+      background:linear-gradient(145deg, #ffffff 0%, #f2f7fd 100%);
+      padding:3.2rem 0 2.6rem;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .95fr;
+      gap:3.2rem;
+      align-items:center;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:.5rem .95rem;border-radius:999px;
+      background:rgba(10,38,71,.06);
+      border:1px solid rgba(10,38,71,.10);
+      color:var(--navy);
+      font-weight:800;
+      width:max-content;
+    }
+    .kicker i{color:var(--coral)}
+    h1{
+      margin:1.1rem 0 .95rem;
+      font-size:clamp(2.2rem, 4vw, 3.7rem);
+      line-height:1.05;
+      color:var(--navy);
+      font-weight:900;
+      letter-spacing:-.03em;
+    }
+    .accent{
+      color:var(--coral);
+      border-left:6px solid var(--gold);
+      padding-left:1.1rem;
+      display:inline-block;
+      margin-left:.2rem;
+    }
+    .lead{
+      font-size:1.15rem;
+      color:#3d5f7a;
+      margin:0 0 1.6rem;
+      max-width:60ch;
+    }
+    .btnrow{display:flex;gap:1rem;flex-wrap:wrap}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:1rem 2.2rem;border-radius:var(--btn);
+      text-decoration:none;font-weight:900;
+      transition:.2s;border:2px solid transparent;
+      cursor:pointer;
+    }
+    .btn.primary{background:var(--coral);color:#fff;box-shadow:0 14px 28px rgba(243,111,74,.25)}
+    .btn.primary:hover{background:#d94f2e;transform:translateY(-1px)}
+    .btn.ghost{background:transparent;border-color:var(--navy);color:var(--navy)}
+    .btn.ghost:hover{background:var(--navy);color:#fff;transform:translateY(-1px)}
+
+  .hero-card{
+  height:520px;
+  border-radius:280px 280px 60px 60px;
+  box-shadow:var(--shadow);
+  border:6px solid #fff;
+  overflow:hidden;
+  position:relative;
+
+  background-image:linear-gradient(180deg, rgba(10,38,71,.55), rgba(10,38,71,.15)),url(Innovative-Warehousing-Technologies-for-Efficiency-blog-img.jpeg);
+  background-position: center, center;
+  background-size: cover, cover;
+  background-repeat: no-repeat, no-repeat;
+}
+
+    .hero-badges{
+      position:absolute;left:18px;bottom:18px;right:18px;
+      display:flex;flex-wrap:wrap;gap:10px;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:.7rem .95rem;border-radius:999px;
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(226,234,242,.9);
+      color:var(--navy);
+      font-weight:900;
+      box-shadow:0 10px 18px rgba(0,0,0,.08);
+    }
+    .badge i{color:var(--coral)}
+    .smallnote{font-size:.92rem;color:rgba(255,255,255,.88);position:absolute;top:18px;left:18px;background:rgba(10,38,71,.55);padding:.55rem .9rem;border-radius:999px;border:1px solid rgba(255,255,255,.18)}
+
+    /* Trust strip */
+    .strip{
+      padding:1.4rem 0 0;
+    }
+    .strip-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:1rem;
+      margin-top:1.1rem;
+    }
+    .mini{
+      background:#fff;border:1px solid var(--border);
+      border-radius:22px;padding:1rem 1.1rem;
+      box-shadow:0 12px 24px rgba(10,38,71,.06);
+      display:flex;gap:12px;align-items:flex-start;
+    }
+    .mini i{color:var(--coral);font-size:1.25rem;margin-top:2px}
+    .mini b{display:block;color:var(--navy);font-size:1rem}
+    .mini span{display:block;color:var(--muted);font-weight:600;font-size:.95rem;margin-top:2px}
+
+    /* Sections */
+    .section{padding:4.2rem 0}
+    .section.alt{background:linear-gradient(180deg, rgba(10,38,71,.03), rgba(10,38,71,0));}
+    .section h2{
+      font-size:clamp(1.9rem, 2.6vw, 2.8rem);
+      color:var(--navy);
+      text-align:center;
+      margin-bottom:1.1rem;
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+    .section p.sub{
+      text-align:center;
+      color:var(--muted);
+      font-size:1.05rem;
+      max-width:80ch;
+      margin:0 auto 2.6rem;
+      font-weight:600;
+    }
+
+    /* Services */
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:1.5rem;
+      width:100%;
+      margin:0 auto;
+      align-items:stretch;
+    }
+    .card{
+      background:#fff;border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:.25s;
+      display:flex;flex-direction:column;height:100%;
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 34px 60px -22px rgba(10,38,71,.25)}
+    .card .img{height:200px;overflow:hidden}
+    .card .img img{width:100%;height:100%;object-fit:cover;display:block;transition:.5s}
+    .card:hover .img img{transform:scale(1.05)}
+    .card .body{padding:1.6rem 1.35rem;display:flex;flex-direction:column;gap:.65rem;flex:1}
+    .card h3{color:var(--navy);font-weight:900;font-size:1.45rem;line-height:1.15}
+    .card p{color:var(--muted);font-weight:600;font-size:.98rem}
+    .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:.2rem}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:.5rem .75rem;border-radius:999px;
+      background:rgba(10,38,71,.05);
+      border:1px solid rgba(10,38,71,.08);
+      color:var(--navy);
+      font-weight:800;
+      font-size:.9rem;
+    }
+    .pill i{color:var(--coral)}
+
+    /* Capabilities + Industries */
+    .two-col{
+      display:grid;grid-template-columns:1.05fr .95fr;
+      gap:1.6rem;align-items:start;
+    }
+    .panel{
+      background:#fff;border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:2rem 1.8rem;
+    }
+    .panel h3{color:var(--navy);font-weight:900;font-size:1.6rem;margin-bottom:.8rem}
+    .list{
+      list-style:none;display:grid;gap:.9rem;margin-top:1rem
+    }
+    .list li{
+      display:flex;gap:12px;align-items:flex-start;
+      color:var(--muted);font-weight:650
+    }
+    .list i{color:var(--coral);margin-top:3px}
+    .cap-grid{
+      display:grid;grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:12px;margin-top:1.1rem
+    }
+    .cap{
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:1rem 1rem;
+      background:linear-gradient(180deg, rgba(10,38,71,.03), rgba(10,38,71,0));
+    }
+    .cap b{display:block;color:var(--navy);font-weight:900}
+    .cap span{display:block;color:var(--muted);font-weight:650;margin-top:3px;font-size:.95rem}
+
+    /* Quote / Booking */
+    .quote-wrap{
+      background:#fff;border:1px solid var(--border);
+      border-radius:80px;
+      box-shadow:var(--shadow);
+      padding:3rem 2.4rem;
+    }
+    .quote-grid{
+      display:grid;grid-template-columns:1.2fr .8fr;
+      gap:2rem;align-items:start;
+      margin-top:1.2rem;
+    }
+    .form{
+      background:#fbfdff;border:1px solid var(--border);
+      border-radius:60px;padding:2rem 1.9rem;
+    }
+    .row{margin-bottom:1.1rem}
+    label{
+      display:flex;align-items:center;gap:10px;
+      font-weight:850;color:var(--navy);margin-bottom:.45rem
+    }
+    label i{color:var(--coral);width:20px}
+    input,select,textarea{
+      width:100%;
+      padding:1rem 1.2rem;
+      border:1.5px solid #dee8f2;
+      border-radius:999px;
+      font-family:'Outfit', sans-serif;
+      font-size:1rem;
+      background:#fff;
+    }
+    textarea{border-radius:26px;resize:vertical}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .toggle{
+      display:flex;align-items:center;gap:12px;
+      background:#edf4fa;border-radius:999px;
+      padding:.9rem 1rem;border:1px solid #e1edf7;
+      margin:1rem 0;
+      flex-wrap:wrap;
+    }
+    .toggle input{width:20px;height:20px;accent-color:var(--coral)}
+    .toggle small{
+      background:var(--coral);color:#fff;
+      padding:.2rem .7rem;border-radius:999px;
+      font-weight:900
+    }
+    .estimate{
+      background:var(--navy);
+      color:#fff;border-radius:999px;
+      padding:1.2rem 1.3rem;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      margin:1.2rem 0 1.1rem;
+      flex-wrap:wrap;
+    }
+    .estimate b{font-weight:900}
+    .estimate .price{font-size:2.1rem;font-weight:950;color:var(--gold)}
+    .submit{
+      width:100%;
+      border:none;
+      border-radius:999px;
+      padding:1.1rem 1.2rem;
+      background:var(--coral);
+      color:#fff;font-weight:950;font-size:1.1rem;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .submit:hover{background:#d94f2e}
+    .info{
+      background:var(--sand);
+      border-radius:60px;
+      padding:2rem 1.8rem;
+      border:1px solid rgba(201,161,91,.25);
+    }
+    .info h4{color:var(--navy);font-weight:950;font-size:1.6rem;margin-bottom:.9rem}
+    .info ul{list-style:none;display:grid;gap:.9rem}
+    .info li{display:flex;gap:12px;align-items:flex-start;color:#2f4f68;font-weight:650}
+    .info i{color:var(--coral);margin-top:3px}
+
+    /* Reviews (credible + no fake faces) */
+    .reviews{
+      display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:1.5rem;margin-top:2.2rem;
+    }
+    .review{
+      background:#fff;border:1px solid var(--border);
+      border-radius:34px;
+      box-shadow:0 18px 38px -18px rgba(10,38,71,.18);
+      padding:1.7rem 1.5rem;
+      height:100%;
+    }
+    .review .quote{color:var(--gold);opacity:.8;font-size:1.4rem}
+    .review p{color:#2c3f55;font-weight:650;margin:.9rem 0 1.1rem}
+    .review .who{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      color:var(--muted);font-weight:800;font-size:.95rem
+    }
+    .stars{color:var(--gold);white-space:nowrap}
+
+    /* Footer */
+    footer{
+      background:var(--navy);
+      color:#fff;
+      padding:4rem 0 2rem;
+      border-radius:80px 80px 0 0;
+      margin-top:4rem;
+    }
+    .footer-grid{
+      display:grid;grid-template-columns:2fr 1fr 1fr 2fr;
+      gap:2rem;align-items:start;
+    }
+    footer a{color:#c9ddf5;text-decoration:none;font-weight:700}
+    footer a:hover{text-decoration:underline}
+    .footbrand{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
+    .footlogo{
+      width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
+      display:flex;align-items:center;justify-content:center;overflow:hidden
+    }
+    .footlogo img{width:100%;height:100%;object-fit:contain}
+    .footname{font-weight:950;letter-spacing:-.02em;font-size:1.25rem}
+    .footmuted{color:rgba(255,255,255,.78);font-weight:650;margin-top:6px}
+
+    /* Modal */
+    .modal{
+      display:none;position:fixed;inset:0;z-index:999;
+      background:rgba(10,38,71,.70);
+      backdrop-filter:blur(5px);
+      align-items:center;justify-content:center;
+      padding:18px;
+    }
+    .modal.active{display:flex}
+    .modalbox{
+      width:min(560px, 100%);
+      background:#fff;border-radius:46px;
+      box-shadow:0 40px 70px rgba(0,0,0,.30);
+      padding:2rem 1.8rem;
+      animation:pop .22s ease-out;
+    }
+    @keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+    .modalbox h3{color:var(--navy);font-weight:950;font-size:1.7rem;display:flex;align-items:center;gap:10px}
+    .lines{margin-top:1.1rem}
+    .line{
+      display:flex;gap:12px;align-items:flex-start;
+      padding:.8rem 0;border-bottom:1px dashed var(--border);
+      color:#2c3f55;font-weight:650;
+    }
+    .line i{color:var(--coral);width:24px;margin-top:2px}
+    .mtotal{
+      margin:1.2rem 0 1rem;
+      background:var(--navy);color:#fff;border-radius:999px;
+      padding:1rem 1.2rem;text-align:center;
+      font-weight:950;font-size:1.6rem;
+    }
+    .closebtn{
+      width:100%;
+      border:none;border-radius:999px;
+      padding:1rem 1.1rem;
+      background:var(--gold);
+      color:var(--navy);
+      font-weight:950;font-size:1.05rem;
+      cursor:pointer;
+    }
+
+    /* Responsive */
+    @media (max-width:1100px){
+      .strip-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .service-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .reviews{grid-template-columns:repeat(2, minmax(0,1fr))}
+      .two-col{grid-template-columns:1fr}
+      .quote-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:900px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-card{height:360px;border-radius:220px 220px 50px 50px}
+      .grid2{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:760px){
+      .navlinks{display:none}
+      .menutoggle{display:inline-flex}
+      .container{padding:0 1.2rem}
+      .navwrap{padding:.9rem 1.2rem}
+      .topbar .container{padding:0 1.2rem;gap:.7rem}
+      .service-grid{grid-template-columns:1fr}
+      .reviews{grid-template-columns:1fr}
+      .quote-wrap{padding:2.2rem 1.4rem;border-radius:44px}
+      .form{border-radius:34px;padding:1.5rem 1.2rem}
+      .info{border-radius:34px;padding:1.5rem 1.2rem}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-left">
+        <span><i class="fas fa-phone-alt"></i> +32 4 87 69 09 21</span>
+        <span><i class="fas fa-envelope"></i> Deal@romelexglobal.com</span>
+        <span><i class="fas fa-map-pin"></i> Kortrijk, Belgium</span>
+        <span><i class="far fa-clock"></i> 08:00 – 18:00</span>
+      </div>
+      <div class="topbar-right">
+        <span class="chip"><i class="fas fa-shield"></i> Secure warehousing</span>
+        <span class="chip"><i class="fas fa-truck-fast"></i> Fast dispatch</span>
+        <span class="chip"><i class="fas fa-circle-check"></i> ADR options on request</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" aria-label="Primary navigation">
+    <div class="navwrap">
+      <div class="brand">
+        <div class="brand-logo" aria-label="ROMELEX logo">
+          <!-- Put your logo file: romelex-logo.png -->
+          <img src="si.avif" alt="ROMELEX logo" onerror="this.style.display='none'; this.parentElement.innerHTML='R'; this.parentElement.style.color='var(--navy)'; this.parentElement.style.fontWeight='950'; this.parentElement.style.fontSize='1.2rem';" />
+        </div>
+        <div>
+          <div class="brand-name">ROMELEX</div>
+          <div class="brand-sub">Warehousing · Transport · Logistics</div>
+        </div>
+      </div>
+
+      <div class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#quote">Request a quote</a>
+        <a href="#reviews">Testimonials</a>
+        <a href="#contact" class="navcta"><i class="fas fa-paper-plane"></i> Contact</a>
+      </div>
+
+      <button class="menutoggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="mobilenav" id="mobileNav">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#quote">Request a quote</a>
+      <a href="#reviews">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="kicker"><i class="fas fa-warehouse"></i> Professional logistics in Kortrijk</div>
+        <h1>
+          Secure <span class="accent">Warehousing</span><br />
+          Transport & Logistics
+        </h1>
+        <p class="lead">
+          Reliable storage, controlled handling and fast dispatch — built for businesses that need clarity, safety and on-time delivery.
+        </p>
+
+        <div class="btnrow">
+          <a class="btn primary" href="#quote"><i class="fas fa-file-invoice"></i> Request a quote</a>
+          <a class="btn ghost" href="#services"><i class="fas fa-grid-2"></i> Explore services</a>
+        </div>
+
+        <div class="strip">
+          <div class="strip-grid">
+            <div class="mini">
+              <i class="fas fa-lock"></i>
+              <div><b>Security first</b><span>Access control & monitoring</span></div>
+            </div>
+            <div class="mini">
+              <i class="fas fa-boxes-stacked"></i>
+              <div><b>Efficient handling</b><span>Inbound, outbound, picking</span></div>
+            </div>
+            <div class="mini">
+              <i class="fas fa-route"></i>
+              <div><b>Transport coordination</b><span>Benelux + EU lanes</span></div>
+            </div>
+            <div class="mini">
+              <i class="fas fa-headset"></i>
+              <div><b>Fast response</b><span>Quotes and follow-up</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-label="Warehouse and logistics">
+        <!-----<div class="smallnote">Clear planning · Safe handling · On-time delivery</div>---->
+        <div class="hero-badges">
+          <span class="badge"><i class="fas fa-shield-halved"></i> Secure storage</span>
+          <span class="badge"><i class="fas fa-truck-fast"></i> Fast dispatch</span>
+          <span class="badge"><i class="fas fa-clipboard-check"></i> Process-driven</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2>Services built for real operations</h2>
+      <p class="sub">
+        Warehousing + transport support with clear procedures. We can scale with your needs — from short-term storage to long-term logistics flow.
+      </p>
+
+      <div class="service-grid">
+        <div class="card">
+          <div class="img">
+            <img src="afb4-2.jpg" alt="Warehouse storage" loading="lazy">
+          </div>
+          <div class="body">
+            <h3>Warehousing</h3>
+            <p>Short & long-term storage, inbound/outbound handling, and structured operations.</p>
+            <div class="pillrow">
+              <span class="pill"><i class="fas fa-box"></i> Pallet storage</span>
+              <span class="pill"><i class="fas fa-hand"></i> Handling</span>
+              <span class="pill"><i class="fas fa-clipboard"></i> Inventory</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="img">
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80" alt="Transport truck" loading="lazy">
+          </div>
+          <div class="body">
+            <h3>Transport</h3>
+            <p>Planned deliveries, express options, and partner coordination for EU routes.</p>
+            <div class="pillrow">
+              <span class="pill"><i class="fas fa-route"></i> Route planning</span>
+              <span class="pill"><i class="fas fa-clock"></i> On-time</span>
+              <span class="pill"><i class="fas fa-file-lines"></i> Documentation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="img">
+            <img src="Innovative-Warehousing-Technologies-for-Efficiency-blog-img.jpeg" alt="Logistics operations" loading="lazy">
+          </div>
+          <div class="body">
+            <h3>Logistics Support</h3>
+            <p>Cross-dock, consolidation, and workflow optimization for better throughput.</p>
+            <div class="pillrow">
+              <span class="pill"><i class="fas fa-layer-group"></i> Consolidation</span>
+              <span class="pill"><i class="fas fa-arrows-turn-to-dots"></i> Cross-dock</span>
+              <span class="pill"><i class="fas fa-chart-simple"></i> Efficiency</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="img">
+            <img src="shutterstock_2321661843.jpg" alt="Compliance and safety" loading="lazy">
+          </div>
+          <div class="body">
+            <h3>Compliance & Safety</h3>
+            <p>Clear procedures, safety-first handling, and ADR options on request.</p>
+            <div class="pillrow">
+              <span class="pill"><i class="fas fa-shield"></i> Safety</span>
+              <span class="pill"><i class="fas fa-triangle-exclamation"></i> ADR option</span>
+              <span class="pill"><i class="fas fa-check"></i> SOP-driven</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES + INDUSTRIES -->
+  <section id="capabilities" class="section alt">
+    <div class="container">
+      <h2>Capabilities that clients ask for</h2>
+      <p class="sub">This section makes the site look “real” and enterprise. Replace the numbers/text with your real capacity when you have it.</p>
+
+      <div class="two-col">
+        <div class="panel">
+          <h3>Operational capabilities</h3>
+          <ul class="list">
+            <li><i class="fas fa-circle-check"></i> Controlled inbound/outbound process (check-in, labeling, allocation)</li>
+            <li><i class="fas fa-circle-check"></i> Inventory accuracy focus (cycle checks, clear locations)</li>
+            <li><i class="fas fa-circle-check"></i> Secure storage approach (access discipline, monitoring)</li>
+            <li><i class="fas fa-circle-check"></i> Transport coordination with clear documentation (CMR, POD, etc.)</li>
+          </ul>
+
+          <div class="cap-grid">
+            <div class="cap"><b>Storage types</b><span>Pallet, bulk, short-term</span></div>
+            <div class="cap"><b>Handling</b><span>Loading, unloading, picking</span></div>
+            <div class="cap"><b>Visibility</b><span>Updates & reporting</span></div>
+            <div class="cap"><b>Safety</b><span>Procedures & compliance</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Industries served</h3>
+          <ul class="list">
+            <li><i class="fas fa-box"></i> E-commerce & retail (fast turnaround)</li>
+            <li><i class="fas fa-industry"></i> Industrial goods & equipment</li>
+            <li><i class="fas fa-pills"></i> Pharma / medical supplies (process discipline)</li>
+            <li><i class="fas fa-snowflake"></i> Temperature-sensitive (on request)</li>
+          </ul>
+
+          <div style="margin-top:1.2rem">
+            <a class="btn primary" href="#quote" style="width:max-content"><i class="fas fa-file-invoice"></i> Get a quotation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE REQUEST -->
+  <section id="quote" class="section">
+    <div class="container">
+      <h2>Request a quotation</h2>
+      <p class="sub">Professional wording: we collect details, estimate price, and send you a formal quote by email.</p>
+
+      <div class="quote-wrap">
+        <div class="quote-grid">
+          <form class="form" id="quoteForm">
+            <div class="row">
+              <label for="fullName"><i class="fas fa-user"></i> Full name</label>
+              <input id="fullName" type="text" placeholder="Your name" required>
+            </div>
+
+            <div class="row">
+              <label for="email"><i class="fas fa-envelope"></i> Email</label>
+              <input id="email" type="email" placeholder="you@email.com" required>
+            </div>
+
+            <div class="row">
+              <label for="phone"><i class="fas fa-phone"></i> Phone (optional)</label>
+              <input id="phone" type="tel" placeholder="+32..." />
+            </div>
+
+            <div class="row">
+              <label for="goods"><i class="fas fa-box"></i> Goods description</label>
+              <input id="goods" type="text" placeholder="Example: pallets, machinery, packaged goods" required>
+            </div>
+
+            <div class="grid2">
+              <div class="row">
+                <label for="weight"><i class="fas fa-weight-hanging"></i> Weight (kg)</label>
+                <input id="weight" type="number" min="0" step="1" value="2500" />
+              </div>
+
+              <div class="row">
+                <label for="volume"><i class="fas fa-ruler-combined"></i> Volume (m³)</label>
+                <input id="volume" type="number" min="0" step="0.1" value="5.5" />
+              </div>
+            </div>
+
+            <div class="grid2">
+              <div class="row">
+                <label for="startDate"><i class="fas fa-calendar"></i> Start date</label>
+                <input id="startDate" type="date" />
+              </div>
+
+              <div class="row">
+                <label for="duration"><i class="fas fa-clock"></i> Duration</label>
+                <select id="duration">
+                  <option value="7">7 days</option>
+                  <option value="30" selected>30 days</option>
+                  <option value="60">60 days</option>
+                  <option value="90">90 days</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="toggle">
+              <input type="checkbox" id="adrCheck">
+              <label for="adrCheck" style="margin:0;font-weight:900;color:var(--navy);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                ADR / hazardous option
+                <small>+35%</small>
+              </label>
+            </div>
+
+            <div class="row">
+              <label for="notes"><i class="fas fa-comment"></i> Notes / requirements</label>
+              <textarea id="notes" rows="3" placeholder="Fragile, special handling, access times, temperature, etc."></textarea>
+            </div>
+
+            <div class="estimate">
+              <b>Estimated total</b>
+              <span class="price" id="priceDisplay">€ 0</span>
+            </div>
+
+            <button class="submit" type="submit"><i class="fas fa-paper-plane"></i> Send quotation request</button>
+            <p style="margin-top:.9rem;color:var(--muted);font-weight:650;font-size:.95rem">
+              This demo shows an estimate + summary. To receive emails for real, connect the form to email/CRM later.
+            </p>
+          </form>
+
+          <div class="info">
+            <h4>What you get</h4>
+            <ul>
+              <li><i class="fas fa-check-circle"></i> A clear quote with scope & conditions</li>
+              <li><i class="fas fa-clipboard-check"></i> Process-first handling (less errors)</li>
+              <li><i class="fas fa-shield-alt"></i> Safety discipline and secure storage mindset</li>
+              <li><i class="fas fa-route"></i> Transport coordination options</li>
+              <li><i class="fas fa-comments"></i> Fast follow-up by phone or email</li>
+            </ul>
+
+            <div style="margin-top:1.2rem;color:#2f4f68;font-weight:750">
+              <i class="fas fa-phone" style="color:var(--coral);margin-right:10px"></i> +32 4 87 69 09 21<br>
+              <i class="fas fa-envelope" style="color:var(--coral);margin-right:10px"></i> Deal@romelexglobal.com<br>
+              <i class="fas fa-map-pin" style="color:var(--coral);margin-right:10px"></i> Kortrijk, Belgium
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="reviews" class="section alt">
+    <div class="container">
+      <h2>What clients value</h2>
+      <p class="sub">No fake faces, no fake scores — just credible, professional testimonials. Replace with real client quotes when available.</p>
+
+      <div class="reviews">
+        <div class="review">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>“Clear communication and smooth inbound/outbound. We always know what’s happening with our stock.”</p>
+          <div class="who">
+            <span>Operations Manager · Retail (BE)</span>
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+          </div>
+        </div>
+
+        <div class="review">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>“Fast dispatch and careful handling. Great partner for short-term storage and urgent deliveries.”</p>
+          <div class="who">
+            <span>Logistics Lead · Industrial (EU)</span>
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+          </div>
+        </div>
+
+        <div class="review">
+          <div class="quote"><i class="fas fa-quote-left"></i></div>
+          <p>“Strong process discipline. Documentation and follow-up are always correct.”</p>
+          <div class="who">
+            <span>Supply Chain · FMCG (Benelux)</span>
+            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <div class="container footer-grid">
+      <div>
+        <div class="footbrand">
+          <div class="footlogo">
+            <img src="si.avif" alt="ROMELEX logo" onerror="this.style.display='none';" />
+          </div>
+          <div>
+            <div class="footname">ROMELEX</div>
+            <div class="footmuted">Warehousing · Transport · Logistics</div>
+          </div>
+        </div>
+        <div class="footmuted">
+          Kortrijk, Belgium — professional logistics support with clear procedures and fast communication.
+        </div>
+      </div>
+
+      <div>
+        <h4 style="color:var(--gold);font-weight:950;margin-bottom:.7rem">QUICK LINKS</h4>
+        <p style="display:grid;gap:.45rem">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#quote">Request a quote</a>
+        </p>
+      </div>
+
+      <div>
+        <h4 style="color:var(--gold);font-weight:950;margin-bottom:.7rem">SERVICES</h4>
+        <p class="footmuted">Storage · Handling · Dispatch · Transport coordination</p>
+      </div>
+
+      <div>
+        <h4 style="color:var(--gold);font-weight:950;margin-bottom:.7rem">CONTACT</h4>
+        <p class="footmuted" style="display:grid;gap:.5rem">
+          <span><i class="fas fa-phone" style="color:var(--coral);margin-right:10px"></i> +32 4 87 69 09 21</span>
+          <span><i class="fas fa-envelope" style="color:var(--coral);margin-right:10px"></i> Deal@romelexglobal.com</span>
+          <span><i class="fas fa-map-pin" style="color:var(--coral);margin-right:10px"></i> Kortrijk, Belgium</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="container" style="text-align:center;margin-top:2.6rem;border-top:1px solid rgba(255,255,255,.18);padding-top:1.6rem;color:rgba(255,255,255,.75);font-weight:650">
+      © <span id="year"></span> ROMELEX. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal" id="summaryModal" aria-hidden="true">
+    <div class="modalbox" role="dialog" aria-modal="true" aria-label="Quotation summary">
+      <h3><i class="fas fa-check-circle" style="color:var(--coral)"></i> Quotation summary</h3>
+      <div class="lines" id="modalLines"></div>
+      <div class="mtotal" id="modalTotal">€ 0</div>
+      <button class="closebtn" type="button" id="closeModalBtn">OK</button>
+    </div>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+
+    function setMenu(open){
+      mobileNav.style.display = open ? 'flex' : 'none';
+      menuToggle.setAttribute('aria-expanded', String(open));
+    }
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mobileNav.style.display === 'flex';
+      setMenu(!isOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+    window.addEventListener('resize', () => { if (window.innerWidth > 760) setMenu(false); });
+
+    // Estimate (keep as estimate; real warehouses quote after review)
+    function calculatePrice(){
+      const weight = parseFloat(document.getElementById('weight').value) || 0;
+      const volume = parseFloat(document.getElementById('volume').value) || 0;
+      const days = parseInt(document.getElementById('duration').value) || 30;
+      const adr = document.getElementById('adrCheck').checked;
+
+      // Simple estimate model (demo):
+      let base = (weight * 0.18) + (volume * 22) + (days / 7) * 65;
+      if (base < 250) base = 320;
+      if (adr) base *= 1.35;
+
+      const total = Math.round(base);
+      document.getElementById('priceDisplay').textContent = '€ ' + total.toLocaleString('nl-BE');
+      return total;
+    }
+
+    ['weight','volume'].forEach(id => document.getElementById(id).addEventListener('input', calculatePrice));
+    document.getElementById('duration').addEventListener('change', calculatePrice);
+    document.getElementById('adrCheck').addEventListener('change', calculatePrice);
+    window.addEventListener('load', calculatePrice);
+
+    // Modal
+    const modal = document.getElementById('summaryModal');
+    const modalLines = document.getElementById('modalLines');
+    const modalTotal = document.getElementById('modalTotal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    function openModal(linesHtml, total){
+      modalLines.innerHTML = linesHtml;
+      modalTotal.textContent = '€ ' + total.toLocaleString('nl-BE');
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden','true');
+    }
+    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    // Form submit (demo summary)
+    document.getElementById('quoteForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('fullName').value.trim() || 'Not provided';
+      const email = document.getElementById('email').value.trim() || 'Not provided';
+      const phone = document.getElementById('phone').value.trim() || '—';
+      const goods = document.getElementById('goods').value.trim() || '—';
+      const weight = document.getElementById('weight').value || '0';
+      const volume = document.getElementById('volume').value || '0';
+      const start = document.getElementById('startDate').value || 'Not set';
+      const durationSel = document.getElementById('duration');
+      const durationTxt = durationSel.options[durationSel.selectedIndex]?.text || '—';
+      const adr = document.getElementById('adrCheck').checked ? 'Yes (ADR option)' : 'No';
+      const notes = document.getElementById('notes').value.trim() || 'None';
+      const total = calculatePrice();
+
+      const lines = `
+        <div class="line"><i class="fas fa-user"></i><div><b>${name}</b><div style="color:#4b6f8d;font-weight:650">${email} · ${phone}</div></div></div>
+        <div class="line"><i class="fas fa-box"></i><div><b>Goods</b><div style="color:#4b6f8d;font-weight:650">${goods}</div></div></div>
+        <div class="line"><i class="fas fa-weight-hanging"></i><div><b>Size</b><div style="color:#4b6f8d;font-weight:650">${weight} kg · ${volume} m³</div></div></div>
+        <div class="line"><i class="fas fa-calendar"></i><div><b>Timing</b><div style="color:#4b6f8d;font-weight:650">Start: ${start} · ${durationTxt}</div></div></div>
+        <div class="line"><i class="fas fa-triangle-exclamation"></i><div><b>ADR</b><div style="color:#4b6f8d;font-weight:650">${adr}</div></div></div>
+        <div class="line" style="border-bottom:none"><i class="fas fa-comment"></i><div><b>Notes</b><div style="color:#4b6f8d;font-weight:650">${notes}</div></div></div>
+      `;
+
+      openModal(lines, total);
+    });
+  </script>
+</body>
+</html>
